@@ -5,14 +5,33 @@ var assign = require('object-assign');
 
 // data storage
 var _data = [{}];
+var _priceTable = {};
 
+if( localStorage.prices ){
+  _priceTable = JSON.parse(localStorage.prices);
+}
+
+function generatePriceAndSave(recipe){
+
+  if( _priceTable[recipe.RecipeID] ){
+    recipe.Price = _priceTable[recipe.RecipeID];
+    return recipe;
+  }
+
+  recipe.Price = (~~(Math.random() * 100)) * 10;
+  _priceTable[recipe.RecipeID] = recipe.price;
+  return recipe;
+}
 
 function setData(data){
+  data.Results = data.Results.map(generatePriceAndSave);
   _data = data;
+  localStorage.prices = JSON.stringify(_priceTable);
 }
 
 function appendData(data){
-  _data = _data.concat(data);
+  _data.Results = _data.Results.concat(data.Results.map(generatePriceAndSave));
+  localStorage.prices = JSON.stringify(_priceTable);
 }
 
 var DataStore = assign({}, EventEmitter.prototype, {

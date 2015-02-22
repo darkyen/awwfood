@@ -99,3 +99,46 @@ body{
 		color: #343434;
 	}
 }
+
+.cart{
+	.container;
+	margin: 100px auto;
+	background: #fff;
+	@media(min-width: 600px){
+		max-width: 600px;
+	}
+}
+
+.cart-element{
+	padding: 15px 0;
+	height: 150px;
+	border-bottom : 1px solid #d8d8d8;
+
+	.item-image{
+		position: absolute;
+		width: 120px;
+		height: 120px;
+	}
+	.item-details{
+		padding-left: 135px;
+		padding-right: 135px;
+	}
+}
+
+.item-details{
+	.item-name,
+	.item-category{
+		
+		margin: 10px 0;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+
+	}
+	.item-name{
+		font-size: 22px;
+	}
+	.item-category{
+		font-size: 16px;
+	}
+}

@@ -7,7 +7,7 @@ import SearchStore from './../stores/DataStore';
 import CartActions from './../actions/CartActionCreator';
 
 var Recipe = React.createClass({
-	
+
 	addToCart(){
 		CartActions.addToCart(this.props.data);
 	},
@@ -15,7 +15,6 @@ var Recipe = React.createClass({
 	render(){
 		var recipe = this.props.data;
 		var chef = recipe.Poster;
-		console.log(recipe);
 		return (
 			<div className="recipe-element">
 				<div className="recipe-image" style={{
@@ -32,7 +31,7 @@ var Recipe = React.createClass({
 					</div>
 				</div>
 				<div className="add-to-cart">
-					<Button bsStyle="danger" onClick={this.addToCart} className="form-control">Add To Cart</Button>
+					<Button bsStyle="danger" onClick={this.addToCart} className="form-control">Rs {recipe.Price} Add To Cart</Button>
 				</div>
 			</div>
 		);	

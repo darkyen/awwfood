@@ -9,6 +9,7 @@ import Button from 'react-bootstrap/Button';
 import SmartSearch from './SmartSearch.jsx';
 import CartStore from './../stores/CartStore.js';
 import DataStore from './../stores/DataStore.js';
+import router from './routes';
 
 var Header = React.createClass({
   
@@ -23,7 +24,7 @@ var Header = React.createClass({
       cartStore: cartStore
     }
   },
-
+  
   updateState(){
     this.setState({
       cartStore: CartStore.getState()
@@ -39,7 +40,6 @@ var Header = React.createClass({
   },
   
   render (){
-    console.log(this.state);
     return (<div className="header-component">
               <NavBar fixedTop={true}>
                   <Col
@@ -58,8 +58,10 @@ var Header = React.createClass({
                   <Col
                     className="padd-top-5 no-right-padding"
                     xs={2}
-                  >
-                    <Button className="form-control">Cart x {this.state.cartStore.items.length}</Button>
+                  > 
+                    <Link to="cart">
+                      <Button onClick={this.openCart} className="form-control">Cart : Rs{this.state.cartStore.price}</Button>
+                    </Link>
                   </Col>
               </NavBar>
             </div>)

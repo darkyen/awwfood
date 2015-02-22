@@ -5,18 +5,34 @@ var assign = require('object-assign');
 
 // data storage
 var _data = {
-  items: []
+  items: [],
+  price: 0
 };
 
 if( localStorage['cart'] ){
   _data = JSON.parse(localStorage.cart);
 }
 
+function calcPrice(){
+  _data.price = _data.items.reduce(function(price, item){
+    price += item.Price * item.Quantity;
+    return price;
+  }, 0);
+}
+
 function saveCart(){
+  calcPrice();
   localStorage.cart = JSON.stringify(_data);
 }
 
 function addToCart(item){
+  var exists = _data.items.filter( x => x.RecipeID === item.RecipeID )[0];
+  if( exists ){
+    exists.Quantity ++;
+    return;
+  }
+
+  item.Quantity = 1;
   _data.items.push(item);
 }
 

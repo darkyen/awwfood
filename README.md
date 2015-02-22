@@ -1,9 +1,5 @@
 
-# LemonKnows Pizza (lemonknows-pizza)
-
-> The most awesome pizza delivery application ever seen on the face of the planet earth
-
-## Running your project
+## Running this project
 
 The generated project includes a live-reloading static server on port `8080` (you can change the port in the `gulpfile.js` config), which will build, launch, and rebuild the app whenever you change application code. To start the server, run:
 

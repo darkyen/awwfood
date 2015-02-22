@@ -101,43 +101,65 @@ body{
 }
 
 .cart{
-	.container;
+	.dishes, .payment{
+		.container;
+		max-width: 320px;
+	}
 	margin: 100px auto;
 	background: #fff;
-	@media(min-width: 600px){
-		max-width: 600px;
-	}
+	max-width: 320px;
 }
 
 .cart-element{
 	padding: 15px 0;
-	height: 150px;
+	height: 110px;
+	position: relative;
 	border-bottom : 1px solid #d8d8d8;
 
 	.item-image{
 		position: absolute;
-		width: 120px;
-		height: 120px;
+		width: 80px;
+		height: 80px;
+
+		img{
+			width: 80px;
+			height: 80px;
+		}
 	}
 	.item-details{
-		padding-left: 135px;
-		padding-right: 135px;
+		padding-left: 95px;
 	}
+	.remove-button{
+		position: absolute;
+		top: 0px;
+		right: 0px;
+		width: 20px;
+		height: 20px;
+		line-height: 20px;
+		background: transparent;
+		border: 1px solid #121212;
+		padding: 0;
+		margin-top: 15px;
+	}
+}
+
+.cart-element:last-of-type{
+	border: 0;
 }
 
 .item-details{
 	.item-name,
 	.item-category{
-		
 		margin: 10px 0;
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
-
 	}
+	
 	.item-name{
 		font-size: 22px;
 	}
+
 	.item-category{
 		font-size: 16px;
 	}

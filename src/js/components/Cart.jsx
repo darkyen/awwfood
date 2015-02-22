@@ -14,18 +14,17 @@ var Item = React.createClass({
 
 	render(){
 		var recipe = this.props.data;
-		var chef = recipe.Poster;
-		console.log(recipe);
 		return (
 			<div className="cart-element">
 				<div className="item-image">
 					<img src={recipe.ImageURL120} />
 				</div>
+				<Button className="remove-button"
+						onClick={this.removeFromCart}>X</Button>
 				<div className="item-details">
 					<div className="chef-text-details">
 						<h2 className="item-name">{recipe.Title}</h2>
-						<h3 className="item-category">{recipe.Category}</h3>
-						<Button onClick={this.removeFromCart}>Remove</Button>
+						<h3 className="item-category">Rs {recipe.Price} x {recipe.Quantity} = Rs {recipe.Price * recipe.Quantity}</h3>
 					</div>
 				</div>
 			</div>
@@ -58,9 +57,27 @@ var Cart = React.createClass({
 		return (
 			<div className="awe-food">
 				<div className="cart">
-					{this.state.cartStore.items.map((x)=>{
-						return <Item key={x.RecipeID} data={x} />
-					})}
+					<div className="dishes">
+						{this.state.cartStore.items.map((x)=>{
+							return <Item key={x.RecipeID} data={x} />
+						})}
+					</div>
+					<hr />
+					<div className="payment">
+						<div className="form-group">
+							<label>Pay via:</label>
+							<select className="form-control">
+								<option selected={true}>Cash</option>
+								<option>Credit Cart</option>
+								<option>Debit Card</option>
+								<option>Net Banking</option>
+								<option>Wallet</option>
+							</select>
+						</div>
+						<div className="form-group">
+							<Button onClick={CartActions.checkout} bsStyle="success" className="form-control">Pay Rs{this.state.cartStore.price}</Button>
+						</div>
+					</div>
 				</div>
 			</div>
 		) 

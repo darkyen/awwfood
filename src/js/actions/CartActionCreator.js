@@ -16,7 +16,10 @@ var CartActions = {
     });
   },
   checkout(){
-
+    AppDispatcher.handleViewAction({
+      type: Constants.ActionTypes.RESET_CART
+    });
+    window.top.location = "/#/";
   }
 };
 

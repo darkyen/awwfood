@@ -15,7 +15,7 @@ function appendData(data){
   _data = _data.concat(data);
 }
 
-var DataStore = assign(EventEmitter.prototype, {
+var DataStore = assign({}, EventEmitter.prototype, {
   // public method used to get only one
   getRecipeById(id) {
     return _data.Results[id].filter((x)=>x.RecipeID === id)[0];

@@ -1,10 +1,17 @@
 import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import Button from 'react-bootstrap/Button';
 import Header from './Header.jsx';
 import SearchStore from './../stores/DataStore';
+import CartActions from './../actions/CartActionCreator';
 
 var Recipe = React.createClass({
+	
+	addToCart(){
+		CartActions.addToCart(this.props.data);
+	},
+
 	render(){
 		var recipe = this.props.data;
 		var chef = recipe.Poster;
@@ -12,7 +19,7 @@ var Recipe = React.createClass({
 		return (
 			<div className="recipe-element">
 				<div className="recipe-image" style={{
-					backgroundImage: 'url(' + recipe.ImageURL + ')'
+					backgroundImage: 'url("' + recipe.ImageURL + '")'
 				}}>
 				</div>
 				<div className="recipe-details">
@@ -23,6 +30,9 @@ var Recipe = React.createClass({
 						<h2 className="dish-name">{recipe.Title}</h2>
 						<h3 className="chef-name">{chef.UserName || 'AnonyMouse'}</h3>
 					</div>
+				</div>
+				<div className="add-to-cart">
+					<Button bsStyle="danger" onClick={this.addToCart} className="form-control">Add To Cart</Button>
 				</div>
 			</div>
 		);	

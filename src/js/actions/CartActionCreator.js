@@ -19,7 +19,7 @@ var CartActions = {
     AppDispatcher.handleViewAction({
       type: Constants.ActionTypes.RESET_CART
     });
-    window.top.location = "/#/";
+    window.top.location = window.top.location.toString().replace('cart', '');
   }
 };
 

@@ -38,5 +38,11 @@ module.exports = {
   watch: {
     src: 'src/**/*.*',
     tasks: ['build']
+  },
+  ghPages:{
+    src: dest + '/**/*',
+  },
+  uglify:{
+    src: dest + '/js/index.js'
   }
 };

@@ -4,20 +4,26 @@ var Constants = require('../constants/AppConstants');
 var assign = require('object-assign');
 
 // data storage
-var _data = [];
+var _data = [{}];
 
-// add private functions to modify data
-function addItem(title, completed=false) {
-  _data.push({title, completed});
+
+function setData(data){
+  _data = data;
+}
+
+function appendData(data){
+  _data = _data.concat(data);
 }
 
 var DataStore = assign(EventEmitter.prototype, {
+  // public method used to get only one
+  getRecipeById(id) {
+    return _data.Results[id].filter((x)=>x.RecipeID === id)[0];
+  },
 
   // public methods used by Controller-View to operate on data
-  getAll: function() {
-    return {
-      tasks: _data
-    };
+  getState() {
+    return _data;
   },
 
 
@@ -37,20 +43,19 @@ var DataStore = assign(EventEmitter.prototype, {
   // register store with dispatcher, allowing actions to flow through
   dispatcherIndex: AppDispatcher.register(function(payload) {
     var action = payload.action;
+    var source = payload.source;
 
     switch(action.type) {
-      case Constants.ActionTypes.ADD_TASK:
-        var text = action.text.trim();
-        // NOTE: if this action needs to wait on another store:
-        // DataStore.waitFor([OtherStore.dispatchToken]);
-        // For details, see: http://facebook.github.io/react/blog/2014/07/30/flux-actions-and-the-dispatcher.html#why-we-need-a-dispatcher
-        if (text !== '') {
-          addItem(text);
-          DataStore.emitChange();
-        }
+      // This is a purely static store,
+      // this is not going to do anything.
+      case Constants.ActionTypes.SEARCH_RESULT_POPULATE:
+        setData(action.data);
+        DataStore.emitChange();
         break;
-
-      // add more cases for other actionTypes...
+      case Constants.ActionTypes.SEARCH_RESULT_PAGINATE:
+        appendData(action.data);
+        DataStore.emitChange();
+        break;
     }
   })
 

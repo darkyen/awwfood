@@ -5,9 +5,11 @@ module.exports = {
   CHANGE_EVENT: 'change',
 
   ActionTypes: keyMirror({
-    ADD_TO_CART: null,
-    REMOVE_FROM_CART: null,
-    CHECKOUT: null
+  	SEARCH_STARTED_TYPING: null,
+  	SEARCH_RESULT_POPULATE: null,
+  	SEARCH_REQUEST_FAILED: null,
+  	SEARCH_RESULT_PAGINATE: null,
+  	SEARCH_STARTED: null
   }),
 
   ActionSources: keyMirror({

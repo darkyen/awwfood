@@ -1,7 +1,7 @@
 {
-  "name": "lemonknows-pizza",
+  "name": "AweFood",
   "version": "0.1.0",
-  "description": "LemonKnows Pizza: The most awesome pizza delivery application ever seen on the face of the planet earth",
+  "description": "Where Food is so awesome it makes awesomeness sound like a joke !",
   "author": "",
   "license": "MIT",
   "devDependencies": {
@@ -19,6 +19,7 @@
     "object-assign": "^2.0.0",
     "react": "^0.12.2",
     "react-bootstrap": "^0.15.1",
+    "react-icon-rating": "^0.2.0",
     "react-router": "^0.12.0"
   }
 }

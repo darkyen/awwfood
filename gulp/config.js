@@ -16,12 +16,16 @@ module.exports = {
     src: src + "/styles/main.less",
     dest: dest + "/styles",
     settings: {
-      paths: ['.', './node_modules/', './public/js/bower_components']
+      paths: [
+        '.',
+        './node_modules/',
+        './public/js/bower_components'
+      ]
     }
   },
   browserify: {
     settings: {
-      transform: ['reactify', '6to5ify']
+      transform: ['6to5ify']
     },
     src: src + '/js/index.jsx',
     dest: dest + '/js',

@@ -1,4 +1,7 @@
-var React = require('react'),
-    App = require('./components/App.jsx');
+import React from 'react';
+import Router from 'react-router';
+import routes from './components/routes';
 
-React.render(<App />, document.getElementById('main'));
+Router.run(routes, function(Handler){
+	React.render(<Handler />, document.getElementById('main'));
+});

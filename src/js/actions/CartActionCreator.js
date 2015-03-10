@@ -19,7 +19,12 @@ var CartActions = {
     AppDispatcher.handleViewAction({
       type: Constants.ActionTypes.RESET_CART
     });
-    window.top.location = window.top.location.toString().replace('cart', '');
+    request.post('http://batuapay.azurewebsites.net/',{
+      phoneNumber: phoneNumber,
+      money: money
+    }).then((x)=>{
+      window.top.location = window.top.location.toString().replace('cart', '');
+    });
   }
 };
 

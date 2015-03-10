@@ -1,6 +1,7 @@
 import AppDispatcher from '../dispatchers/AppDispatcher';
 import Constants from '../constants/AppConstants';
 import request from 'superagent';
+import cartStore from './../stores/CartStore';
 
 var CartActions = {
   addToCart(recipe){
@@ -15,10 +16,12 @@ var CartActions = {
       data: id
     });
   },
-  checkout(){
+  checkout(phoneNumber){
     AppDispatcher.handleViewAction({
       type: Constants.ActionTypes.RESET_CART
     });
+    var money = cartStore.getState().price;
+    
     request.post('http://batuapay.azurewebsites.net/',{
       phoneNumber: phoneNumber,
       money: money

@@ -44,7 +44,10 @@ var Cart = React.createClass({
 			cartStore: CartStore.getState()
 		});
 	},
-	
+	checkout(){
+		var phNum = this.refs.phNum.getDOMNode().value;
+		CartActions.checkout(phNum);
+	},
 	componentDidMount(){
 		CartStore.addChangeListener(this.updateState);
 	},
@@ -67,15 +70,14 @@ var Cart = React.createClass({
 						<div className="form-group">
 							<label>Pay via:</label>
 							<select className="form-control">
-								<option selected={true}>Cash</option>
-								<option>Credit Cart</option>
-								<option>Debit Card</option>
-								<option>Net Banking</option>
-								<option>Wallet</option>
+								<option>BatuaPay</option>
 							</select>
 						</div>
 						<div className="form-group">
-							<Button onClick={CartActions.checkout} bsStyle="success" className="form-control">Pay Rs{this.state.cartStore.price}</Button>
+							<input type="text" ref="phNum" placeholder="Phonenumber" />
+						</div>
+						<div className="form-group">
+							<Button onClick={this.checkout} bsStyle="success" className="form-control">Pay Rs{this.state.cartStore.price}</Button>
 						</div>
 					</div>
 				</div>
